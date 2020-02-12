@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    <title>MedicalConsulting</title>
+    </h:head>
+ 
+    <h:body>
+     
+   <p:layout style="min-width:100px;min-height:600px">
+   
+   <p:layoutUnit position="center">
+   
+   
+   
+   
+   
+   <h1>Medical Consulting</h1>
+   
+    <p:growl id="msgs" showDetail="true" />
+    <p:dashboard id="board" model="#{dashboardView.model}">
+            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
+ 
+            <p:panel id="medico" header="Médico">
+               <h:outputLink  value="javascript:void(0)" onclick="PF('dlg').show();" title="Login" >
+             <h:graphicImage url="/images/medico.jpg" />
+            </h:outputLink>
+               
+            </p:panel>
+ 
+            <p:panel id="paciente" header="Paciente">
+                <h:outputLink  value="javascript:void(0)" onclick="PF('dlg2').show();" title="Login" >
+             <h:graphicImage url="/images/paciente.jpg" />
+            </h:outputLink>
+                
+            </p:panel>
+ 
+           
+ 
+           
+        </p:dashboard>
+   
+
+
+<h:form>
+<p:growl id="msg" showDetail="true"/>
+<p:dialog header="Médico ingresar usuario y contraseña" widgetVar="dlg" modal="false">
+<h:panelGrid columns="2" cellpadding="5">
+<h:outputLabel value="Usuario:" for="usuarioMedico" />
+<p:inputText id="usuarioMedico" value="#{login.usuarioMedico}" required="true" label="usuario">
+</p:inputText>
+
+<h:outputLabel value="Contraseña:" for="passwordMedico" />
+<p:password id="passwordMedico" value="#{login.passwordMedico}" required="true" label="password">
+</p:password>
+
+<f:facet name="footer">
+
+<p:commandButton  value="Acceder" action="#{login.loginMedico}" ></p:commandButton>
+
+</f:facet>
+
+</h:panelGrid>
+
+
+</p:dialog>
+</h:form>
+
+<h:form>
+<p:growl id="msg2" showDetail="true"/>
+<p:dialog header="Paciente ingresar usuario y contraseña" widgetVar="dlg2" modal="false">
+
+<h:panelGrid columns="2" cellpadding="5">
+<h:outputLabel value="Usuario:" for="usuarioPaciente" />
+<p:inputText id="usuarioPaciente" value="#{login.usuarioPaciente}" required="true" label="usuario">
+</p:inputText>
+<h:outputLabel value="Contraseña:" for="passwordPaciente" />
+<p:password id="passwordPaciente" value="#{login.passwordPaciente}" required="true" label="password">
+</p:password>
+
+<f:facet name="footer">
+
+<p:commandButton  value="Ingresar" action="#{login.loginPaciente}" ></p:commandButton>
+
+</f:facet>
+
+</h:panelGrid>
+
+
+</p:dialog>
+
+</h:form>
+
+
+</p:layoutUnit>
+</p:layout>
+
+
+
+
+
+     
+     
+     
+        
+  
+ 
+    
+    </h:body>
+</html>

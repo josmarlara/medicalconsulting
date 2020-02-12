@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    <title>MedicalConsulting</title>
+    </h:head>
+ 
+    <h:body>
+   <style type="text/css">
+    .ui-datalist {
+        width:400px;
+        margin-bottom: 20px;
+    }
+ 
+    .ui-datalist-item {
+        padding:3px;
+    }
+ 
+    .paginated .ui-datalist-data {
+        padding-left: 20px;
+    }
+</style>
+   <p:layout style="min-width:50px;min-height:600px">
+   
+   <p:layoutUnit position="center">
+   <h:form id="form">
+     
+    
+    <p:megaMenu orientation="horizontal">
+   <p:submenu label="Consultas" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Agendar consulta" outcome="seleccionarMedico" >
+   
+   
+   
+   </p:menuitem>
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   </p:submenu>
+   
+  
+   
+    <p:submenu label="Salir">
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Salir Aplicación" action="#{login.logout}">
+   
+   </p:menuitem>
+ 
+   
+   
+   </p:submenu>
+   
+  
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   
+   </p:megaMenu>
+   
+  
+   
+   </h:form>
+   
+   
+   
+   <h1>Medical Consulting</h1>
+   
+    Bienvenido #{login.userPaciente}
+   
+<p:panel header="Seleccionar Médico">
+ <h:form id="form2">
+
+
+ <h:panelGrid columns="2" cellpadding="5">
+ 
+ <p:outputLabel for="@next" value="Seleccionar Médico:"  />
+ 
+ <p:selectOneMenu id="dni" value="#{agendaBean.dni}"    style="width:160px">
+           
+           <f:selectItems value="#{agendaBean.medicos}" var="medico" itemLabel="#{medico.nombre} #{medico.apellidoPaterno} #{medico.apellidoMaterno} " 
+           itemValue="#{medico.dni}"  />              
+                         
+                         
+                         
+                         </p:selectOneMenu>
+                         
+     <f:facet name="footer">
+
+<p:commandButton id="botonMedico" value="Buscar Fechas de Consulta" action="#{agendaBean.mostrarFechasDisponibles}" 
+update="horarioInicio,form2:cita"  >
+  
+</p:commandButton>
+
+     <p:commandLink   title="Consultar citas"  style="float:left;margin-right:20px;margin-top:3px" action="#{agendaBean.mostrarCitas}" update="form2:agenda,form2:cita">
+     <f:setPropertyActionListener target="#{agendaBean.nombrePaciente}" value="#{login.userPaciente}" /> 
+     <h:outputText value="Buscar Citas" />
+      </p:commandLink>
+  
+
+</f:facet>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </h:panelGrid>
+<h:panelGrid columns="2" cellpadding="5">
+ <p:dataList value="#{agendaBean.turnos}" var="turno" type="unordered" itemType="none" id="horarioInicio" paginator="true" rows="10" styleClass="paginated" >
+        <f:facet name="header">
+            Fechas Disponibles
+        </f:facet>
+        <p:commandLink   title="Ver Fecha"  style="float:left;margin-right:20px;margin-top:3px"  action="#{agendaBean.mostrarHorario(turno)}" value="mostrarHorario" update="form2:cita">
+           <f:setPropertyActionListener target="#{agendaBean.horario}" value="#{turno}" />
+
+          <h:outputText value="Seleccionar Fecha:" />
+        </p:commandLink>
+        <h:outputText value="Fecha:#{turno.horarioInicio},Duración Consulta: #{turno.duracionConsulta} minutos" style="display:inline-block"  />
+    </p:dataList>
+    
+    <p:dataList value="#{agendaBean.horarios}" var="horario" type="unordered" itemType="none" id="cita" paginator="true" rows="10" styleClass="paginated" >
+        <f:facet name="header">
+            Horarios Disponibles
+        </f:facet>
+        <p:commandLink   title="Ver Horario"  style="float:left;margin-right:20px;margin-top:3px" action="#{agendaBean.agendarCita(horario)}" update="form2:cita,form2:agenda" >
+          <f:setPropertyActionListener target="#{agendaBean.nombrePaciente}" value="#{login.userPaciente}" /> 
+          <h:outputText value="Seleccionar Horario:" />
+        </p:commandLink>
+        <h:outputText value="Horario:#{horario.horario},Status: #{horario.status}" style="display:inline-block"  />
+    </p:dataList>
+ 
+</h:panelGrid>
+
+
+<p:dataList value="#{agendaBean.citasAgendadas}" var="cita" type="unordered" itemType="none" id="agenda" paginator="true" rows="10" styleClass="paginated" >
+        <f:facet name="header">
+            Citas Agendadas
+        </f:facet>
+        <p:commandLink   title="Cancelar cita"  style="float:left;margin-right:20px;margin-top:3px" action="#{agendaBean.cancelarCita(cita)}" update="form2:agenda,form2:cita"  >
+        <f:setPropertyActionListener target="#{agendaBean.nombrePaciente}" value="#{login.userPaciente}" />
+          <h:outputText value="Cancelar Horario:" />
+        </p:commandLink>
+        <h:outputText value="Horario:#{cita.horario},Status: #{cita.status}" style="display:inline-block"  />
+    </p:dataList>
+
+
+
+
+
+
+ </h:form>
+</p:panel>
+
+
+
+
+</p:layoutUnit>
+</p:layout>
+
+
+
+
+
+     
+     
+     
+        
+  
+ 
+    
+    </h:body>
+</html>

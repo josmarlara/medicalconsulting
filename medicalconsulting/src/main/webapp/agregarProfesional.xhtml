@@ -1,0 +1,404 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    <title>MedicalConsulting</title>
+ 
+ 
+ 
+ 
+ 
+    </h:head>
+ 
+ 
+ 
+ 
+ 
+ 
+    <h:body>
+  
+  
+  
+  <style>
+  .ui-row-editor .iu-row-editor-pencil{
+   margin-left:8px;
+  
+  }
+  
+  
+  
+  </style>
+  
+   
+   <p:layout style="min-width:100px;min-height:600px">
+   
+   <p:layoutUnit position="center">
+   <h:form id="form1">
+     
+    
+    <p:megaMenu orientation="horizontal">
+   <p:submenu label="Profesional" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Administrar Profesional" outcome="agregarProfesional">
+   
+   
+   </p:menuitem>
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   </p:submenu>
+   
+   
+   
+   
+   <p:submenu label="Turnos" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Crear Turno" outcome="agregarTurno">
+   
+   </p:menuitem>
+   
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   <p:submenu label="Pacientes">
+   <p:column>
+   <p:submenu label="Acciones">
+  
+  <p:menuitem value="Administrar Paciente" outcome="agregarPaciente" >
+   
+   </p:menuitem> 
+   
+   
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+    <p:submenu label="Salir">
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Salir Aplicación" action="#{login.logout}">
+   
+   </p:menuitem>
+ 
+   
+   
+   </p:submenu>
+   
+  
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   
+   </p:megaMenu>
+   
+  
+   
+   </h:form>
+   
+   
+   
+  
+    <h:form id="form">
+   <h3> #{login.user}</h3>
+     <p:growl id="msg" showDetail="true"/>
+    <p:panel id="panel" header="Agregar profesional">
+ <h:panelGrid columns="6" cellpadding="5">
+<h:outputLabel value="DNI:" for="dni" />
+<p:inputText id="dni" value="#{profesionalBean.dni}" required="true" label="DNI" size="30" requiredMessage="DNI Obligatorio">
+</p:inputText>
+<p:message for="dni"></p:message>
+<h:outputLabel value="Nombre:" for="nombre" />
+
+<p:inputText id="nombre" value="#{profesionalBean.nombre}" required="true" label="nombre" size="30" requiredMessage="Nombre requerido">
+</p:inputText>
+<p:message for="nombre"></p:message>
+
+<h:outputLabel value="Apellido Paterno:" for="apellidoPaterno" />
+
+<p:inputText id="apellidoPaterno" value="#{profesionalBean.apellidoPaterno}" required="true" label="apellido paterno" size="30" 
+requiredMessage="Apellido Paterno requerido">
+</p:inputText>
+<p:message for="apellidoPaterno"></p:message>
+
+<h:outputLabel value="Apellido Materno:" for="apellidoMaterno" />
+
+<p:inputText id="apellidoMaterno" value="#{profesionalBean.apellidoMaterno}"  label="apellido Materno" size="30">
+</p:inputText>
+<p:message for="apellidoMaterno"></p:message>
+<h:outputLabel value="Mail:" for="mail"  />
+
+<p:inputText id="mail" value="#{profesionalBean.mail}" required="true" label="mail" size="30" requiredMessage="Correo obligatorio">
+</p:inputText>
+<p:message for="mail"></p:message>
+<h:outputLabel value="Telefono:" for="telefono" />
+
+<p:inputText id="telefono" value="#{profesionalBean.telefono}" required="true" label="telefono" size="30" requiredMessage="Telefono requerido">
+</p:inputText>
+<p:message for="telefono"></p:message>
+
+<h:outputLabel value="Password:" for="password" />
+
+<p:inputText id="password" value="#{profesionalBean.password}" required="true" label="password" size="30" requiredMessage="Password requerido">
+</p:inputText>
+<p:message for="password"></p:message>
+<h:outputLabel value="Calle:" for="calle"    />
+
+<p:inputText id="calle" value="#{profesionalBean.calle}" required="true" label="calle" size="30" requiredMessage="Calle requerida">
+</p:inputText>
+<p:message for="calle"></p:message>
+<h:outputLabel value="Numero:" for="numero" />
+
+<p:inputText id="numero" value="#{profesionalBean.numero}" required="true" label="numero" size="30" requiredMessage="Número requerido">
+</p:inputText>
+<p:message for="numero"></p:message>
+
+<h:outputLabel value="Colonia:" for="colonia" />
+
+<p:inputText id="colonia" value="#{profesionalBean.colonia}" required="true" label="colonia" size="30" requiredMessage="Colonia requerida">
+</p:inputText>
+<p:message for="colonia"></p:message>
+
+<h:outputLabel value="Municipio:" for="municipio" />
+
+<p:inputText id="municipio" value="#{profesionalBean.municipio}" required="true" label="municipio" size="30" 
+requiredMessage="Municipio requerido">
+</p:inputText>
+<p:message for="municipio"></p:message>
+<h:outputLabel value="Estado:" for="estado" />
+
+<p:inputText id="estado" value="#{profesionalBean.estado}" required="true" label="estado" size="30" 
+requiredMessage="Estado requerido">
+</p:inputText>
+<p:message for="estado"></p:message>
+<h:outputLabel value="Código Postal:" for="codigoPostal" />
+
+<p:inputText id="codigoPostal" value="#{profesionalBean.codigoPostal}" required="true" label="codigoPostal" size="30" 
+requiredMessage="Código postal requerido">
+</p:inputText>
+<p:message for="codigoPostal"></p:message>
+<f:facet name="footer">
+
+<p:commandButton  value="Agregar"    action="#{profesionalBean.guardarProfesional}" update="form,medicos" >
+  
+</p:commandButton>
+
+</f:facet>
+
+
+</h:panelGrid>
+
+<p:dataTable  paginator="true" 
+paginatorposition="bottom" rows="5" lazy="true" dynamic="true"
+id="medicos"  var="medico"  value="#{profesionalBean.medicos}" editable="true" style="margin-bottom:20px">
+<f:facet name="header">
+
+Profesionales
+</f:facet>
+
+<p:ajax event="rowEdit" listener="#{profesionalBean.onEdit}" update=":form:msg" />
+<p:ajax event="rowEditCancel" listener="#{profesionalBean.onCancel}" update=":form:msg" />
+
+
+
+<p:column headerText="DNI">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.dni}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText id="modelInput" value="#{medico.dni}" style="width:100%" readonly="true">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Nombre">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.nombre}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.nombre}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Apellido Paterno">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.apellidoPaterno}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.apellidoPaterno}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Apellido Materno">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.apellidoMaterno}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.apellidoMaterno}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Mail">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.mail}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.mail}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Telefono">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.telefono}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.telefono}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Password">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.password}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.password}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Calle">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.domicilio.calle}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.domicilio.calle}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Número">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.domicilio.numero}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.domicilio.numero}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Colonia">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.domicilio.colonia}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.domicilio.colonia}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Municipio">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.domicilio.municipio}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.domicilio.municipio}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Estado">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.domicilio.estado}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.domicilio.estado}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column headerText="Código postal">
+<p:cellEditor>
+<f:facet name="output">
+<h:outputText value="#{medico.domicilio.codigoPostal}" />
+</f:facet>
+<f:facet name="input">
+<p:inputText  value="#{medico.domicilio.codigoPostal}" style="width:100%">  </p:inputText>
+</f:facet>
+</p:cellEditor>
+</p:column>
+<p:column style="width:5%">
+   <p:rowEditor></p:rowEditor>
+</p:column>
+
+
+
+
+
+
+
+
+
+
+
+
+</p:dataTable>
+
+
+
+
+
+
+
+
+
+
+</p:panel> 
+ </h:form>  
+
+
+
+
+
+</p:layoutUnit>
+</p:layout>
+
+
+
+
+
+     
+     
+     
+        
+  
+ 
+    
+    </h:body>
+</html>

@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    <title>MedicalConsulting</title>
+    </h:head>
+ 
+    <h:body>
+   
+   <p:layout style="min-width:50px;min-height:600px">
+   
+   <p:layoutUnit position="center">
+   <h:form id="form">
+     
+    
+    <p:megaMenu orientation="horizontal">
+   <p:submenu label="Profesional" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Administrar Profesional" outcome="agregarProfesional">
+   
+   </p:menuitem>
+   
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   </p:submenu>
+   
+   
+   
+   
+   <p:submenu label="Turnos" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Crear Turno"  outcome="agregarTurno">
+   
+   </p:menuitem>
+   
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   <p:submenu label="Pacientes">
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Administrar Paciente" outcome="agregarPaciente" >
+   
+   </p:menuitem>
+ 
+   
+   
+   
+   
+   </p:submenu>
+   
+   
+   
+   
+   
+   
+   
+   
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+    <p:submenu label="Salir">
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Salir Aplicación" action="#{login.logout}">
+   
+   </p:menuitem>
+ 
+   
+   
+   </p:submenu>
+   
+  
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   
+   </p:megaMenu>
+   
+  
+   
+   </h:form>
+   
+   
+   
+   <h1>Medical Consulting</h1>
+   
+    Bienvenido #{login.user}
+   
+
+
+
+
+
+</p:layoutUnit>
+</p:layout>
+
+
+
+
+
+     
+     
+     
+        
+  
+ 
+    
+    </h:body>
+</html>

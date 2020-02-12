@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:context="http://www.springframework.org/schema/context"
+          xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+          xsi:schemaLocation="http://www.springframework.org/schema/context
+          https://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/data/mongo https://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+          http://www.springframework.org/schema/beans
+          https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<context:annotation-config />
+
+<context:component-scan base-package=">mx.com.tutosoftware.medicalconsulting" />
+<mongo:mongo-client host="127.0.0.1" port="27017">
+    <mongo:client-options write-concern="NORMAL" />
+    
+  </mongo:mongo-client>
+
+<mongo:db-factory  dbname="medicaldb" mongo-ref="mongoClient" />
+
+<mongo:repositories base-package="mx.com.tutosoftware.medicalconsulting.repository">
+</mongo:repositories>
+
+<bean id="mongoTemplate"  class="org.springframework.data.mongodb.core.MongoTemplate" >
+
+<constructor-arg ref="mongoClient">
+
+</constructor-arg>
+<constructor-arg name="databaseName" value="medicaldb"  >
+</constructor-arg>
+</bean>
+
+<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+<bean class="mx.com.tutosoftware.medicalconsulting.service.ProfesionalService" id="profesionalService"/>
+<bean class="mx.com.tutosoftware.medicalconsulting.service.PacienteService" id="pacienteService"/>
+<bean class="mx.com.tutosoftware.medicalconsulting.service.TurnoService" id="turnoService"/>  
+<bean class="mx.com.tutosoftware.medicalconsulting.service.CitaService" id="citaService"/>  
+  
+</beans>

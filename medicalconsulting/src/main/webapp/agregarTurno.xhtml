@@ -1,0 +1,289 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+     
+    <h:head>
+    <title>MedicalConsulting</title>
+    </h:head>
+ 
+    <h:body>
+    <script  type="text/javascript">
+
+
+        PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D','L','M','M','J','V','S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText : 'Todo el día'
+        };
+        
+        </script>
+   
+   <p:layout style="min-width:50px;min-height:600px">
+   
+   <p:layoutUnit position="center">
+   <h:form id="form">
+     
+    
+    <p:megaMenu orientation="horizontal">
+   <p:submenu label="Profesional" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Administrar Profesional" outcome="agregarProfesional">
+   
+   </p:menuitem>
+   
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   </p:submenu>
+   
+   
+   
+   
+   <p:submenu label="Turnos" >
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Crear Turno"  outcome="agregarTurno">
+   
+   </p:menuitem>
+    
+   
+   </p:submenu>
+   
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   <p:submenu label="Pacientes">
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Administrar Paciente" outcome="agregarPaciente" >
+   
+   </p:menuitem>
+ 
+   
+   
+   
+   
+   </p:submenu>
+   
+   
+   
+   
+   
+   
+   
+   
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+    <p:submenu label="Salir">
+   <p:column>
+   <p:submenu label="Acciones">
+   <p:menuitem value="Salir Aplicación" action="#{login.logout}">
+   
+   </p:menuitem>
+ 
+   
+   
+   </p:submenu>
+   
+  
+   </p:column>
+   
+   
+   
+   
+   </p:submenu>
+   
+   
+   </p:megaMenu>
+   
+  
+   
+   </h:form>
+   
+   
+   
+   <h1>Medical Consulting</h1>
+   
+    #{login.user}
+    
+   <p:panel header="Agregar Turno">
+   <h:form id="form2">
+   <p:growl id="msg" showDetail="true"/>
+   <h:panelGrid columns="6" cellpadding="5">
+   <h:outputLabel value="DNI:" for="dni" />
+<p:inputText id="dni" value="#{turnoBean.dni}"  label="DNI" size="30" readonly="true" >
+</p:inputText>
+   <p:message for="dni"></p:message>
+   
+   <p:outputLabel for="horarioInicio" value="Horario de Inicio:" />
+   <p:calendar id="horarioInicio" value="#{turnoBean.horarioInicio}" pattern="dd/MM/yyyy HH" locale="es"  required="true" requiredMessage="Obligatrio horario de inicio" />
+   <p:message for="horarioInicio"></p:message>
+   
+   <p:outputLabel for="horarioFinal" value="Horario de Final:" />
+   <p:calendar id="horarioFinal" value="#{turnoBean.horarioFinal}" pattern="dd/MM/yyyy HH" 
+   locale="es"  required="true" requiredMessage="Obligatrio horario final" />
+   <p:message for="horarioFinal"></p:message>
+   
+    <p:outputLabel for="@next" value="Duración consulta:" />
+        <p:selectOneMenu id="duracion" value="#{turnoBean.duracionConsulta}" style="width:125px">
+            
+            <f:selectItem itemLabel="15 minutos" itemValue="15" />
+            <f:selectItem itemLabel="30 minutos" itemValue="30" />
+            <f:selectItem itemLabel="1 hora" itemValue="60" />
+           
+       </p:selectOneMenu>
+   <p:message for="duracion"></p:message>
+   
+   
+   <f:facet name="footer">
+
+<p:commandButton  value="Agregar Turno"  action="#{turnoBean.guardarTurno}" update="form2,turnos" >
+  
+</p:commandButton>
+
+</f:facet>
+   
+   
+   
+   
+   </h:panelGrid>
+  <p:dataTable  paginator="true" 
+paginatorposition="bottom" rows="10" lazy="true" dynamic="true"
+id="turnos"  var="turno"  value="#{turnoBean.turnos}"  style="margin-bottom:20px">
+<f:facet name="header">
+
+Turnos
+</f:facet>
+
+
+
+
+<p:column headerText="DNI">
+
+
+<h:outputText value="#{turno.dni}" />
+
+</p:column>
+<p:column headerText="Horario Inicio">
+
+<h:outputText value="#{turno.horarioInicio}" />
+
+</p:column>
+<p:column headerText="Horario Final">
+<h:outputText value="#{turno.horarioFinal}" />
+</p:column>
+<p:column headerText="Duración consulta">
+
+<h:outputText value="#{turno.duracionConsulta} minutos" />
+
+</p:column>
+
+<p:column>
+
+<p:commandButton action="#{turnoBean.mostrarPacientes}" update=":form2:pacientes" value="Ver consultas" title="View" process="@this">
+                <f:setPropertyActionListener target="#{turnoBean.turnoDisponible}" value="#{turno}" />
+            </p:commandButton>
+
+
+
+
+</p:column>
+
+
+
+
+</p:dataTable>
+  
+  
+   <p:dataTable   
+id="pacientes"  var="paciente"  value="#{turnoBean.pacientes}"  style="margin-bottom:20px">
+<f:facet name="header">
+
+Horarios
+</f:facet>
+
+
+
+
+
+<p:column headerText="Horario">
+
+<h:outputText value="#{paciente.horario}" />
+
+</p:column>
+<p:column headerText="Nombre Paciente">
+<h:outputText value="#{paciente.nombrePaciente}" />
+</p:column>
+<p:column headerText="Status">
+
+<h:outputText value="#{paciente.status}" />
+
+</p:column>
+
+
+
+
+</p:dataTable>
+  
+  
+  
+   
+   
+   </h:form>
+   </p:panel>
+
+
+
+
+
+</p:layoutUnit>
+</p:layout>
+
+
+
+
+
+     
+     
+     
+        
+  
+ 
+    
+    </h:body>
+</html>
