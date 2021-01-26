@@ -12,7 +12,7 @@
 <context:annotation-config />
 
 <context:component-scan base-package=">mx.com.tutosoftware.medicalconsulting" />
-<mongo:mongo-client host="37.44.247.238" port="27017">
+<mongo:mongo-client host="127.0.0.1" port="27017">
     <mongo:client-options write-concern="NORMAL" />
     
   </mongo:mongo-client>
