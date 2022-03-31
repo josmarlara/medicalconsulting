@@ -21,7 +21,7 @@
         <primefacestheme.version>1.0.10</primefacestheme.version>
 		<primefaces.version>7.0</primefaces.version>
 		<springdata.version>2.0.8.RELEASE</springdata.version>
-		<spring.version>5.0.7.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<jsf2.version>2.2.10</jsf2.version>
 		<jackson-core.version>2.9.5</jackson-core.version>
 		<jstl.version>1.2</jstl.version>
