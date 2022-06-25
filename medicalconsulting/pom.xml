@@ -20,7 +20,7 @@
         <csc.version>0.0.1-SNAPSHOT</csc.version>
         <primefacestheme.version>1.0.10</primefacestheme.version>
 		<primefaces.version>7.0</primefaces.version>
-		<springdata.version>2.0.8.RELEASE</springdata.version>
+		<springdata.version>3.3.5</springdata.version>
 		<spring.version>5.0.7.RELEASE</spring.version>
 		<jsf2.version>2.2.10</jsf2.version>
 		<jackson-core.version>2.9.5</jackson-core.version>
